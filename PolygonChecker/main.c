@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h> //line 3: added stdlib - joshua
 
 #include "main.h"
 #include "triangleSolver.h"
@@ -58,7 +59,10 @@ int* getTriangleSides(int* triangleSides) {
 	printf_s("Enter the three sides of the triangle: ");
 	for (int i = 0; i < 3; i++)
 	{
-		scanf_s("%d", &triangleSides[i]);
+		if (scanf_s("%d", &triangleSides[i]) != 1) {
+			printf_s("Invalid, enter a number.");
+			exit(EXIT_FAILURE); //line 62-64: added input validation for triangle sides - joshua 
+		}
 	}
 	return triangleSides;
 }
