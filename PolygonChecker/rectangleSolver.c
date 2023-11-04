@@ -29,7 +29,7 @@ VECTOR2 quadrilateral[QUAD_SIZE];
 // 4. Add this point to the point array and check again using it as the reference point.
 // 5. Continue until the original point is reached.
 
-VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength) {
+VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength) { // 1.
 	VECTOR2 smallest = { q[0].x, q[0].y };
 	for (int i = 0; i < arrLength - 1; i++) {
 		if (smallest.y > q[i + 1].y) {
@@ -40,6 +40,16 @@ VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength) {
 	return smallest;
 }
 
+int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin) {
+	// Cross product formula = a0.x * b.y - a0.y * b.x
+	// Cross product is negative if b is to the left of a and positive if it is on the right. 0 if they are in line at 180 degrees or 0 degrees == No rectangle
+	int xProd = a.x * b.y - a.y * b.x;
+	if (xProd < 0)
+		return -1;
+	if (xProd > 0)
+		return 1;
+	return 0;
+}
 
 
 
