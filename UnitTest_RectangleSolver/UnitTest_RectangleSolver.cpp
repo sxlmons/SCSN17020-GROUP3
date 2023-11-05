@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include <stdio.h>
 #include "../PolygonChecker/rectangleSolver.h"
 
 extern "C" VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength);
-extern "C" int getCrossProduct(VECTOR2 a, VECTOR2 b);
+extern "C" int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin);
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -25,8 +26,9 @@ namespace UnitTestRectangleSolver
 			// vector 'b' is to the right of vector 'a' so the function should return -1.
 			VECTOR2 a = { 1, 2 };
 			VECTOR2 b = { 5, 9 };
+			VECTOR2 origin = { 1, 1 };
 			int expected = -1;
-			int actual = getCrossProduct(a, b);
+			int actual = getCrossProduct(a, b, origin);
 			Assert::AreEqual(expected, actual);
 		}
 	};

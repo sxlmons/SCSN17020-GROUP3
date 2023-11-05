@@ -16,10 +16,6 @@ By:				--
 #define QUAD_SIZE 4
 VECTOR2 quadrilateral[QUAD_SIZE];
 
-
-
-
-
 // Using the Convex Hull algorithm, Jarvis March. This algorithm finds the point with the smallest x,y coordinate and then checks all points for their angle to this point.
 // It then adds these points in order depending if they are clockwise or counterclockwise to the original point. This algorithm brute forces it so it gets slower with more points.
 
@@ -29,9 +25,16 @@ VECTOR2 quadrilateral[QUAD_SIZE];
 // 4. Add this point to the point array and check again using it as the reference point.
 // 5. Continue until the original point is reached.
 
-VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength) { // 1.
+// q[] is the set of points, hull is the set of points that make the hull. Unlike normal Jarvis March, this set size will always be 4.
+VECTOR2* JarvisMarch(VECTOR2 q[], VECTOR2 a, VECTOR2 b) {
+	VECTOR2 hull[QUAD_SIZE];
+	return hull;
+}
+
+
+VECTOR2 findStartingPoint(VECTOR2 q[]) { // 1.
 	VECTOR2 smallest = { q[0].x, q[0].y };
-	for (int i = 0; i < arrLength - 1; i++) {
+	for (int i = 0; i < QUAD_SIZE - 1; i++) {
 		if (smallest.y > q[i + 1].y) {
 			smallest.y = q[i + 1].y;
 			smallest.x = q[i + 1].x;
@@ -43,7 +46,7 @@ VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength) { // 1.
 int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin) {
 	// Cross product formula = a0.x * b.y - a0.y * b.x
 	// Cross product is negative if b is to the left of a and positive if it is on the right. 0 if they are in line at 180 degrees or 0 degrees == No rectangle
-	int xProd = a.x * b.y - a.y * b.x;
+	int xProd = (a.x - origin.x) * (b.y - origin.y) - (a.y - origin.y) * (b.x - origin.x);
 	if (xProd < 0)
 		return -1;
 	if (xProd > 0)
