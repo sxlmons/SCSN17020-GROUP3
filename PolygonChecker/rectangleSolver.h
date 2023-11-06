@@ -5,5 +5,5 @@ typedef struct vector2 {
 	int y;
 } VECTOR2;
 
-//VECTOR2 findStartingPoint(VECTOR2 q[], size_t arrLength);
-//int getCrossProduct(VECTOR2 a, VECTOR2 b);
+//int findStartingPointIndex(VECTOR2 q[]);
+//int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin);

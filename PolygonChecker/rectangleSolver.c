@@ -14,7 +14,6 @@ By:				--
 #include "rectangleSolver.h"
 
 #define QUAD_SIZE 4
-VECTOR2 quadrilateral[QUAD_SIZE];
 
 // Using the Convex Hull algorithm, Jarvis March. This algorithm finds the point with the smallest x,y coordinate and then checks all points for their angle to this point.
 // It then adds these points in order depending if they are clockwise or counterclockwise to the original point. This algorithm brute forces it so it gets slower with more points.
@@ -25,22 +24,17 @@ VECTOR2 quadrilateral[QUAD_SIZE];
 // 4. Add this point to the point array and check again using it as the reference point.
 // 5. Continue until the original point is reached.
 
-// q[] is the set of points, hull is the set of points that make the hull. Unlike normal Jarvis March, this set size will always be 4.
-VECTOR2* JarvisMarch(VECTOR2 q[], VECTOR2 a, VECTOR2 b) {
-	VECTOR2 hull[QUAD_SIZE];
-	return hull;
-}
 
 
-VECTOR2 findStartingPoint(VECTOR2 q[]) { // 1.
-	VECTOR2 smallest = { q[0].x, q[0].y };
-	for (int i = 0; i < QUAD_SIZE - 1; i++) {
-		if (smallest.y > q[i + 1].y) {
-			smallest.y = q[i + 1].y;
-			smallest.x = q[i + 1].x;
+
+int findStartingPointIndex(VECTOR2 q[]) { // 1.
+	int smallestIndex = 0;
+	for (int i = 1; i < QUAD_SIZE; i++) {
+		if (q[i].y < q[smallestIndex].y) {
+			smallestIndex = i;
 		}
 	}
-	return smallest;
+	return smallestIndex;
 }
 
 int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin) {
@@ -54,7 +48,22 @@ int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin) {
 	return 0;
 }
 
-
+// q[] is the set of points, hull is the set of points that make the hull. Unlike normal Jarvis March, this set size will always be 4.
+VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]) {
+	VECTOR2 hull[QUAD_SIZE];
+	int start = findStartingPointIndex(quad);
+	int p = start;
+	int q;
+	hull[0] = quad[start];
+	do {
+		q = (p + 1) % QUAD_SIZE;
+		for (int i = 0; i < QUAD_SIZE; i++) {
+			if (getCrossProduct(quad[p], quad[i], quad[q]) == 1)
+				q = i;
+		}
+	} while (p != start);
+	return hull;
+}
 
 //// Quickhull algorithm to find which points connect to which. References: wikipedia.org & geeksforgeeks.org
 //void QuickHull(VECTOR2 q[], int n, VECTOR2 p1, VECTOR2 p2, int side) {
