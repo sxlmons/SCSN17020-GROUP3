@@ -55,8 +55,6 @@ VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]) {
 	hull[0] = quad[start];
 
 	for (int j = 1; j < QUAD_SIZE; j++) {
-
-
 		mostClockwisePoint = (originPoint + j) % QUAD_SIZE;
 		for (int i = 0; i < QUAD_SIZE; i++) {
 			if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
@@ -65,22 +63,5 @@ VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]) {
 		originPoint = mostClockwisePoint;
 		hull[j] = quad[originPoint];
 	}
-
-	/*mostClockwisePoint = (originPoint + 2) % QUAD_SIZE;
-	for (int i = 0; i < QUAD_SIZE; i++) {
-		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
-			mostClockwisePoint = i;
-	}
-	originPoint = mostClockwisePoint;
-	hull[2] = quad[originPoint];
-
-	mostClockwisePoint = (originPoint + 3) % QUAD_SIZE;
-	for (int i = 0; i < QUAD_SIZE; i++) {
-		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
-			mostClockwisePoint = i;
-	}
-	originPoint = mostClockwisePoint;
-	hull[3] = quad[originPoint];*/
-
 	return hull;
 }
