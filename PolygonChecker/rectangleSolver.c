@@ -13,8 +13,6 @@ By:				--
 #include <math.h>
 #include "rectangleSolver.h"
 
-#define QUAD_SIZE 4
-
 // Using the Convex Hull algorithm, Jarvis March. This algorithm finds the point with the smallest x,y coordinate and then checks all points for their angle to this point.
 // It then adds these points in order depending if they are clockwise or counterclockwise to the original point. This algorithm brute forces it so it gets slower with more points.
 
@@ -50,18 +48,37 @@ int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin) {
 
 // q[] is the set of points, hull is the set of points that make the hull. Unlike normal Jarvis March, this set size will always be 4.
 VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]) {
-	VECTOR2 hull[QUAD_SIZE];
+	VECTOR2 hull[QUAD_SIZE] = { 0 };
 	int start = findStartingPointIndex(quad);
-	int p = start;
-	int q;
+	int originPoint = start;
+	int mostClockwisePoint;
 	hull[0] = quad[start];
-	do {
-		q = (p + 1) % QUAD_SIZE;
-		for (int i = 0; i < QUAD_SIZE; i++) {
-			if (getCrossProduct(quad[p], quad[i], quad[q]) == 1)
-				q = i;
-		}
-	} while (p != start);
+
+	mostClockwisePoint = (originPoint + 1) % QUAD_SIZE;
+	for (int i = 0; i < QUAD_SIZE; i++) {
+		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
+			mostClockwisePoint = i;
+	}
+	originPoint = mostClockwisePoint;
+	hull[1] = quad[originPoint];
+
+
+	mostClockwisePoint = (originPoint + 2) % QUAD_SIZE;
+	for (int i = 0; i < QUAD_SIZE; i++) {
+		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
+			mostClockwisePoint = i;
+	}
+	originPoint = mostClockwisePoint;
+	hull[2] = quad[originPoint];
+
+	mostClockwisePoint = (originPoint + 3) % QUAD_SIZE;
+	for (int i = 0; i < QUAD_SIZE; i++) {
+		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
+			mostClockwisePoint = i;
+	}
+	originPoint = mostClockwisePoint;
+	hull[3] = quad[originPoint];
+
 	return hull;
 }
 

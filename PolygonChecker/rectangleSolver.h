@@ -1,5 +1,7 @@
 #pragma once
 
+#define QUAD_SIZE 4
+
 typedef struct vector2 {
 	int x;
 	int y;
@@ -7,3 +9,4 @@ typedef struct vector2 {
 
 //int findStartingPointIndex(VECTOR2 q[]);
 //int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin);
+//VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]);
