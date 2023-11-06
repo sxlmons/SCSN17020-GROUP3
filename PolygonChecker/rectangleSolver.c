@@ -54,16 +54,19 @@ VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]) {
 	int mostClockwisePoint;
 	hull[0] = quad[start];
 
-	mostClockwisePoint = (originPoint + 1) % QUAD_SIZE;
-	for (int i = 0; i < QUAD_SIZE; i++) {
-		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
-			mostClockwisePoint = i;
+	for (int j = 1; j < QUAD_SIZE; j++) {
+
+
+		mostClockwisePoint = (originPoint + j) % QUAD_SIZE;
+		for (int i = 0; i < QUAD_SIZE; i++) {
+			if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
+				mostClockwisePoint = i;
+		}
+		originPoint = mostClockwisePoint;
+		hull[j] = quad[originPoint];
 	}
-	originPoint = mostClockwisePoint;
-	hull[1] = quad[originPoint];
 
-
-	mostClockwisePoint = (originPoint + 2) % QUAD_SIZE;
+	/*mostClockwisePoint = (originPoint + 2) % QUAD_SIZE;
 	for (int i = 0; i < QUAD_SIZE; i++) {
 		if (getCrossProduct(quad[mostClockwisePoint], quad[i], quad[originPoint]) == 1)
 			mostClockwisePoint = i;
@@ -77,40 +80,7 @@ VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]) {
 			mostClockwisePoint = i;
 	}
 	originPoint = mostClockwisePoint;
-	hull[3] = quad[originPoint];
+	hull[3] = quad[originPoint];*/
 
 	return hull;
 }
-
-//// Quickhull algorithm to find which points connect to which. References: wikipedia.org & geeksforgeeks.org
-//void QuickHull(VECTOR2 q[], int n, VECTOR2 p1, VECTOR2 p2, int side) {
-//	
-//	int index = -1;
-//	int max_distance = 0;
-//	// 1. find points with min and max x coordinates and min and max y. These form the first line. 
-//	// Search through all of the points and compare them with eachother to get the ones with the greatest distance inbetween each other.
-//	for (int i = 0; i < n; i++) {
-//		int temp = lineDistance(p1, p2, q[i]);
-//		if (findSide(p1, p2, q[i]) == side && temp > max_distance) {
-//			index = i;
-//			max_distance = temp;
-//		}
-//	}
-//	if (index == -1) {
-//		q[0] = p1.x;
-//
-//	}
-//}
-//int findSide(VECTOR2 p1, VECTOR2 p2, VECTOR2 p3) {
-//	int value = (p3.y - p1.y) * (p2.x - p1.x) - (p2.y - p1.y) * (p3.x - p1.x);
-//	if (value < 0) {
-//		return -1;
-//	}
-//	if (value > 0) {
-//		return 1;
-//	}
-//	return 0;
-//}
-//int lineDistance(VECTOR2 p1, VECTOR2 p2, VECTOR2 p3) {
-//	return abs((p3.y - p1.y) * (p2.x - p1.x) - (p2.y - p1.y) * (p3.x - p1.x));
-//}
