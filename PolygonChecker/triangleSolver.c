@@ -27,7 +27,7 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 
 // function to calculate triangle angles - ruth
 void GetTriangleInsideAngles(double a, double b, double c, double* A, double* B, double* C) {
-
+	
 	double pi = acos(-1);
 
 	*A = acos((b * b + c * c - a * a) / (2 * b * c)) * 180 / pi;
@@ -37,10 +37,11 @@ void GetTriangleInsideAngles(double a, double b, double c, double* A, double* B,
 }
 
 // displays the values for the inside angles of the triangle
-void DisplayTriangleInsideAngles() {
-	double a, b, c, A, B, C;
-	printf("Enter the 3 sides of a triangle:\n");
-	scanf("%lf %lf %lf", &a, &b, &c);
-	GetTriangleInsideAngles(a, b, c, &A, &B, &C);
+void DisplayTriangleInsideAngles(double A, double B, double C) {
+	
+	
+	//printf("Enter the 3 sides of a triangle:\n");
+	//scanf("%lf %lf %lf", &a, &b, &c);
+	
 	printf("The  inside angles of the triangle are: %.2lf, %.2lf, and %.2lf degrees.\n", A, B, C);
 }

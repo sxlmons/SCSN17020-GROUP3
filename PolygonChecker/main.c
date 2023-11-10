@@ -25,11 +25,14 @@ int main() {
 		case 1:
 			printf_s("Triangle selected.\n");
 			int triangleSides[3] = { 0, 0, 0 };
+			int triangleAngles[3] = { 0, 0, 0 };
 			int* triangleSidesPtr = getTriangleSides(triangleSides);
+			double A, B, C;
 			//printf_s("! %d\n", triangleSidesPtr[0]);
 			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
 			printf_s("%s\n", result);
-			DisplayTriangleInsideAngles();
+			GetTriangleInsideAngles(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2], &A, &B, &C);
+			DisplayTriangleInsideAngles(A, B, C);
 			break;
 		case 2:
 			fprintf(stdout, "Rectangle selected.\n");
