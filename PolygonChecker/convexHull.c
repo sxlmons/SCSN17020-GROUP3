@@ -65,5 +65,7 @@ void JarvisMarch(VECTOR2* quad) {
 		originPoint = mostClockwisePoint;
 		hull[j] = quad[originPoint];
 	}
-	quad = hull;
+	for (int i = 0; i < QUAD_SIZE; i++) {
+		quad[i] = hull[i];
+	}
 }
