@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h> //line 3: added stdlib - joshua
@@ -28,6 +29,7 @@ int main() {
 			//printf_s("! %d\n", triangleSidesPtr[0]);
 			char* result = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
 			printf_s("%s\n", result);
+			DisplayTriangleInsideAngles();
 			break;
 		case 2:
 			fprintf(stdout, "Rectangle selected.\n");
