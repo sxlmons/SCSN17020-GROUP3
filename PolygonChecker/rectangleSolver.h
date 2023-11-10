@@ -1,12 +1,10 @@
 #pragma once
 
-#define QUAD_SIZE 4
+#include <stdbool.h>
+#include "convexHull.h"
 
-typedef struct vector2 {
-	int x;
-	int y;
-} VECTOR2;
 
-//int findStartingPointIndex(VECTOR2 q[]);
-//int getCrossProduct(VECTOR2 a, VECTOR2 b, VECTOR2 origin);
-//VECTOR2* JarvisMarch(VECTOR2 quad[QUAD_SIZE]);
+
+bool InputPoints(VECTOR2*);
+double getSideLength(VECTOR2, VECTOR2);
+void AnalyzeRectangle(VECTOR2*);

@@ -2,7 +2,8 @@
 #include "CppUnitTest.h"
 #include <stdio.h>
 #include <array>
-#include "../PolygonChecker/rectangleSolver.h"
+#include "../PolygonChecker/convexHull.h"
+
 
 extern "C" int findStartingPointIndex(VECTOR2 q[]);
 extern "C" int getCrossProduct(VECTOR2, VECTOR2, VECTOR2);
