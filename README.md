@@ -7,3 +7,21 @@
 
 
 
+# Unit Tests
+
+| Test ID             | findStartingPointIndex_returnsIndexOfLowestYVector     |
+|---------------------|--------------------------------------------------------|
+| Description         | Finds the lowest y value from an array of (x,y) pairs. |
+| Method of Execution | Automatic                                              |
+| Input Data          | q[] = { {1, 2}, {5, 9}, {-3, 20}, {1, 7} }             |
+| Expected Output     | 0                                                      |
+| Observed Output     | 0                                                      |
+
+| Test ID             | getCrossProduct_retunsCounterclockwise                                                                                                                                   |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Description         | Returns negative 1 if a second vector is to the left of the first and positive if it is on the right. If the vectors are 180 or 0  degrees from each other it returns 0. |
+| Method of Execution | Automatic                                                                                                                                                                |
+| Input Data          | a = {1, 2}, b = {5, 9}, origin = {1, 1}          |
+| Expected Output     | -1                                                                                                                                                                       |
+| Observed Output     | -1                                                                                                                                                                       |
+
