@@ -40,7 +40,7 @@ bool InputPoints(VECTOR2* points) {
 double getSideLength(VECTOR2 p1, VECTOR2 p2) {
 	// distance formula = sqrt((x2 - x1)^2 + (y2 - y1)^2)
 	double length;
-	length = sqrt(((p2.x - p1.x)+(p2.x - p1.x)) + ((p2.y - p1.y)+(p2.y - p1.y)));
+	length = sqrt(abs(((p2.x - p1.x)+(p2.x - p1.x)) + ((p2.y - p1.y)+(p2.y - p1.y))));
 	return length;
 }
 
@@ -49,7 +49,7 @@ void AnalyzeRectangle(VECTOR2* points) {
 		fprintf(stderr, "VECTOR2 pointer is NULL in AnalyzeRectangle.\n");
 	}
 
-	double sides[QUAD_SIZE];
+	double sides[QUAD_SIZE] = { 0 };
 	sides[0] = getSideLength(points[0], points[1]);
 	sides[1] = getSideLength(points[1], points[2]);
 	sides[2] = getSideLength(points[2], points[3]);
