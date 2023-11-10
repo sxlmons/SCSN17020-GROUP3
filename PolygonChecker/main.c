@@ -4,6 +4,7 @@
 #include <stdlib.h> //line 3: added stdlib - joshua
 
 #include "main.h"
+#include "convexHull.h"
 #include "triangleSolver.h"
 #include "rectangleSolver.h"
 

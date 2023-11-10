@@ -22,12 +22,12 @@ bool InputPoints(VECTOR2* points) {
 	}
 	
 	for (int i = 0; i < QUAD_SIZE; i++) {
-		fprintf(stdout, "%s %d %s", "Input point", i, "x: ");
+		fprintf(stdout, "%s %d %s", "Rectangle point", i ,"X = ");
 		if (scanf_s("%d", &points[i].x) != 1) {
 			fprintf(stderr, "%s %d %s", "Bad value for x in point", i, "\n");
 			return false;
 		}
-		fprintf(stdout, "%s %d %s", "Input point", i, "y: ");
+		fprintf(stdout, "%s %d %s", "Rectangle Point", i ,"Y = ");
 		if (scanf_s("%d", &points[i].y) != 1) {
 			fprintf(stderr, "%s %d %s", "Bad value for y in point", i, "\n");
 			return false;
@@ -40,17 +40,16 @@ bool InputPoints(VECTOR2* points) {
 double getSideLength(VECTOR2 p1, VECTOR2 p2) {
 	// distance formula = sqrt((x2 - x1)^2 + (y2 - y1)^2)
 	double length;
-	length = sqrt(((p2.x - p1.x)+(p2.x - p1.x)) + ((p2.y - p1.y)+(p2.y - p1.y)));
+	length = sqrt(abs(((p2.x - p1.x)+(p2.x - p1.x)) + ((p2.y - p1.y)+(p2.y - p1.y))));
 	return length;
 }
 
 void AnalyzeRectangle(VECTOR2* points) {
 	if (points == NULL) {
 		fprintf(stderr, "VECTOR2 pointer is NULL in AnalyzeRectangle.\n");
-		return "Error.\n";
 	}
 
-	double sides[QUAD_SIZE];
+	double sides[QUAD_SIZE] = { 0 };
 	sides[0] = getSideLength(points[0], points[1]);
 	sides[1] = getSideLength(points[1], points[2]);
 	sides[2] = getSideLength(points[2], points[3]);
