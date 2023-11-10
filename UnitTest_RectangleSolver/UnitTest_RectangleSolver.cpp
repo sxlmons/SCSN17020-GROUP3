@@ -2,12 +2,12 @@
 #include "CppUnitTest.h"
 #include <stdio.h>
 #include <array>
-#include "../PolygonChecker/convexHull.h"
+#include "../PolygonChecker/convexHull.c"
 
 
-extern "C" int findStartingPointIndex(VECTOR2 q[]);
-extern "C" int getCrossProduct(VECTOR2, VECTOR2, VECTOR2);
-extern "C" VECTOR2* JarvisMarch(VECTOR2 quad[]);
+extern int findStartingPointIndex(VECTOR2 q[]);
+extern int getCrossProduct(VECTOR2, VECTOR2, VECTOR2);
+extern void JarvisMarch(VECTOR2*);
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -36,67 +36,59 @@ namespace UnitTestRectangleSolver
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_0_x)
 		{
-			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
+			VECTOR2 actual[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { -3, -1 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *temp;
-			Assert::AreEqual(expected.x, actual.x);
+			JarvisMarch(actual);
+			Assert::AreEqual(expected.x, actual[0].x);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_0_y)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { -3, -1 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *temp;
-			Assert::AreEqual(expected.y, actual.y);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.y, a[0].y);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_1_x)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { -4, 1 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *(temp + 1);
-			Assert::AreEqual(expected.x, actual.x);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.x, a[1].x);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_1_y)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { -4, 1 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *(temp + 1);
-			Assert::AreEqual(expected.y, actual.y);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.y, a[1].y);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_2_x)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { 1, 3 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *(temp + 2);
-			Assert::AreEqual(expected.x, actual.x);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.x, a[2].x);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_2_y)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { 1, 3 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *(temp + 2);
-			Assert::AreEqual(expected.y, actual.y);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.y, a[2].y);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_3_x)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { 4, 0 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *(temp + 3);
-			Assert::AreEqual(expected.x, actual.x);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.x, a[3].x);
 		}
 		TEST_METHOD(JarvisMarch_returnsSortedHull_3_y)
 		{
 			VECTOR2 a[4] = { {1, 3}, {4, 0}, {-4, 1}, {-3, -1} };
 			VECTOR2 expected = { 4, 0 };
-			VECTOR2* temp = JarvisMarch(a);
-			VECTOR2 actual = *(temp + 3);
-			Assert::AreEqual(expected.y, actual.y);
+			JarvisMarch(a);
+			Assert::AreEqual(expected.y, a[3].y);
 		}
 	};
 }
