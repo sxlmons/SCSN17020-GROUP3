@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 
 #include "triangleSolver.h"
 
@@ -21,4 +22,10 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	}
 
 	return result;
+}
+
+// function to calculate triangle angles - ruth
+void calculateTriangleAngles(int side1, int side2, int side3){
+
+
 }
