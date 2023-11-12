@@ -26,26 +26,34 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	return result;
 }
 
-int maxof(double a, double b, double c) {
-	double max = a;
-	if (max < b)
-		max = b;
-	if (max < c);
-	max = c;
-	return max;
-
+void maxof(double* a, double* b, double* c) {
+	double max = *a;
+	if (max < *b) {
+		max = *b;
+		*b = *a;
+		*a = max;
+	}
+	if (max < *c) {
+		max = *c;
+		*c = *a;
+		*a = max;
+	}
 }
 
 // function to calculate triangle angles - ruth
-void GetTriangleInsideAngles(double a, double b, double c, double* A, double* B, double* C) {
+bool GetTriangleInsideAngles(double a, double b, double c, double* A, double* B, double* C) {
 
 	double pi = acos(-1);
-
+	maxof(&a, &b, &c);
+	if (a > (b + c)) {
+		fprintf(stdout, "Side B and Side C cannot add to less than Side A.\n");
+		return false;
+	}
 
 	*A = acos((b * b + c * c - a * a) / (2 * b * c)) * 180 / pi;
 	*B = acos((a * a + c * c - b * b) / (2 * a * c)) * 180 / pi;
 	*C = acos((a * a + b * b - c * c) / (2 * a * b)) * 180 / pi;
-
+	return true;
 }
 
 // displays the values for the inside angles of the triangle
