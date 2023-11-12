@@ -5,6 +5,7 @@
 
 #include "triangleSolver.h"
 
+
 char* analyzeTriangle(int side1, int side2, int side3) {
 	char* result = "";
 	if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
@@ -13,7 +14,7 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	else if (side1 == side2 && side1 == side3) {
 		result = "Equilateral triangle";
 	}
-	else if ((side1 == side2 && side1 != side3) || 
+	else if ((side1 == side2 && side1 != side3) ||
 		(side1 == side3 && side1 != side2))
 	{
 		result = "Isosceles triangle";
@@ -25,10 +26,21 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	return result;
 }
 
+int maxof(double a, double b, double c) {
+	double max = a;
+	if (max < b)
+		max = b;
+	if (max < c);
+	max = c;
+	return max;
+
+}
+
 // function to calculate triangle angles - ruth
 void GetTriangleInsideAngles(double a, double b, double c, double* A, double* B, double* C) {
-	
+
 	double pi = acos(-1);
+
 
 	*A = acos((b * b + c * c - a * a) / (2 * b * c)) * 180 / pi;
 	*B = acos((a * a + c * c - b * b) / (2 * a * c)) * 180 / pi;
