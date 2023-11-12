@@ -25,7 +25,6 @@ int main() {
 		case 1:
 			printf_s("Triangle selected.\n");
 			int triangleSides[3] = { 0, 0, 0 };
-			int triangleAngles[3] = { 0, 0, 0 };
 			int* triangleSidesPtr = getTriangleSides(triangleSides);
 			double A, B, C;
 			//printf_s("! %d\n", triangleSidesPtr[0]);

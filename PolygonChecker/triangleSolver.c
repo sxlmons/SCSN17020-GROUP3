@@ -38,10 +38,5 @@ void GetTriangleInsideAngles(double a, double b, double c, double* A, double* B,
 
 // displays the values for the inside angles of the triangle
 void DisplayTriangleInsideAngles(double A, double B, double C) {
-	
-	
-	//printf("Enter the 3 sides of a triangle:\n");
-	//scanf("%lf %lf %lf", &a, &b, &c);
-	
 	printf("The  inside angles of the triangle are: %.2lf, %.2lf, and %.2lf degrees.\n", A, B, C);
 }
