@@ -3,7 +3,11 @@
 #include <stdio.h>
 #include <array>
 #include "../PolygonChecker/convexHull.c"
+#include "../PolygonChecker/rectangleSolver.c"
 
+extern bool InputPoints(VECTOR2*);
+extern double getSideLength(VECTOR2, VECTOR2);
+extern void AnalyzeRectangle(VECTOR2*);
 
 extern int findStartingPointIndex(VECTOR2 q[]);
 extern int getCrossProduct(VECTOR2, VECTOR2, VECTOR2);
@@ -16,7 +20,30 @@ namespace UnitTestRectangleSolver
 	TEST_CLASS(UnitTestRectangleSolver)
 	{
 	public:
-		
+		TEST_METHOD(getSideLength_returnsCorrectLength)
+		{
+			VECTOR2 a = { 1, 2 };
+			VECTOR2 b = { 5, 9 };
+
+			double expected = sqrt(65);
+			double actual = getSideLength(a, b);
+			Assert::AreEqual(expected, actual);
+		}
+		TEST_METHOD(getSideLength_acceptsNegativeValues)
+		{
+			VECTOR2 a = { -1, -2 };
+			VECTOR2 b = { -5, -9 };
+
+			double expected = sqrt(65);
+			double actual = getSideLength(a, b);
+			Assert::AreEqual(expected, actual);
+		}
+	};
+
+
+	TEST_CLASS(UnitTestConvexHull)
+	{
+	public:
 		TEST_METHOD(findStartingPointIndex_returnsIndexOfLowestYVector)
 		{
 			VECTOR2 a[4] = { {1, 2}, {5, 9}, {-3, 20}, {1, 7} };

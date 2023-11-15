@@ -40,7 +40,7 @@ bool InputPoints(VECTOR2* points) {
 double getSideLength(VECTOR2 p1, VECTOR2 p2) {
 	// distance formula = sqrt((x2 - x1)^2 + (y2 - y1)^2)
 	double length;
-	length = sqrt(abs(((p2.x - p1.x)+(p2.x - p1.x)) + ((p2.y - p1.y)+(p2.y - p1.y))));
+	length = sqrt(abs(pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2)));
 	return length;
 }
 
