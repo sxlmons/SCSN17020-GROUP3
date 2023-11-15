@@ -14,8 +14,10 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	else if (side1 == side2 && side1 == side3) {
 		result = "Equilateral triangle";
 	}
+	// Joshua: Added this condition to check if side2 is equal to side3 
 	else if ((side1 == side2 && side1 != side3) ||
-		(side1 == side3 && side1 != side2))
+		(side1 == side3 && side1 != side2) ||
+		(side2 == side3 && side2 != side1))
 	{
 		result = "Isosceles triangle";
 	}
@@ -25,6 +27,7 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 
 	return result;
 }
+
 
 void maxof(double* a, double* b, double* c) {
 	double max = *a;
