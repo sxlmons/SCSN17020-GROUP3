@@ -11,11 +11,20 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 	if (side1 <= 0 || side2 <= 0 || side3 <= 0) {
 		result = "Not a triangle";
 	}
+	// Check the triangle inequality theorem
+	// The sum of the lengths of any two sides of a triangle must be greater than the length of the third side
+	// If not, it's not a triangle
+	else if (side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1) { 
+		result = "Not a triangle"; 
+	} 
+
 	else if (side1 == side2 && side1 == side3) {
 		result = "Equilateral triangle";
 	}
+	// Joshua: Added this condition to check if side2 is equal to side3 
 	else if ((side1 == side2 && side1 != side3) ||
-		(side1 == side3 && side1 != side2))
+		(side1 == side3 && side1 != side2) ||
+		(side2 == side3 && side2 != side1))
 	{
 		result = "Isosceles triangle";
 	}
@@ -25,6 +34,7 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 
 	return result;
 }
+
 
 void maxof(double* a, double* b, double* c) {
 	double max = *a;
@@ -60,3 +70,5 @@ bool GetTriangleInsideAngles(double a, double b, double c, double* A, double* B,
 void DisplayTriangleInsideAngles(double A, double B, double C) {
 	printf("The  inside angles of the triangle are: %.2lf, %.2lf, and %.2lf degrees.\n", A, B, C);
 }
+
+
