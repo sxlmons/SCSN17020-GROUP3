@@ -27,11 +27,11 @@ namespace UnitTestTriangleSolver
 	TEST_CLASS(UnitTestTriangleSolver)
 	{
 	public:
-		
+
 		TEST_METHOD(NotATriangle)
 		{
-			Assert::AreEqual("Not a triangle", analyzeTriangle(0, 1, 1)); 
-			Assert::AreEqual("Not a triangle", analyzeTriangle(1, 0, 1)); 
+			Assert::AreEqual("Not a triangle", analyzeTriangle(0, 1, 1));
+			Assert::AreEqual("Not a triangle", analyzeTriangle(1, 0, 1));
 		}
 		TEST_METHOD(TestMethod_EquilateralTriangle)
 		{
@@ -41,7 +41,7 @@ namespace UnitTestTriangleSolver
 		TEST_METHOD(TestMethod_IsoscelesTriangle)
 		{
 			Assert::AreEqual("Isosceles triangle", analyzeTriangle(2, 2, 1));
-		/*	Assert::AreEqual("Isosceles triangle", analyzeTriangle(2, 1, 2));*/
+			/*	Assert::AreEqual("Isosceles triangle", analyzeTriangle(2, 1, 2));*/
 			Assert::AreEqual("Isosceles triangle", analyzeTriangle(1, 2, 2));
 		}
 		TEST_METHOD(TestMethod_ScaleneTriangle)
@@ -50,6 +50,8 @@ namespace UnitTestTriangleSolver
 			Assert::AreEqual("Scalene triangle", analyzeTriangle(3, 4, 2));
 			Assert::AreEqual("Scalene triangle", analyzeTriangle(4, 2, 3));
 		}
+	};
+	TEST_CLASS(Test_GetTriangleInsideAngles_Function){
 
 		// tests for the GetTriangleInsideAngles function -- ruth
 		// tests an equilateral triangle
@@ -99,6 +101,26 @@ namespace UnitTestTriangleSolver
 			double sideA = 8, sideB = 6, sideC = 12;
 			double angleA, angleB, angleC;
 			double expectedAngleA = 117.28, expectedAngleB = 26.38, expectedAngleC = 36.34;
+			double tolerance = 0.01; // compares the angles up to the second decimal place
+
+
+			bool actual = GetTriangleInsideAngles(sideA, sideB, sideC, &angleA, &angleB, &angleC);
+
+
+			Assert::IsTrue(actual);
+			// tests that the actual and expected values are equal up to 2 decimal places
+			Assert::AreEqual(expectedAngleA, angleA, tolerance);
+			Assert::AreEqual(expectedAngleB, angleB, tolerance);
+			Assert::AreEqual(expectedAngleC, angleC, tolerance);
+		}
+
+		// tests a scalene triangle with decimal number side length values
+		TEST_METHOD(InsideAngles_DecimalSideLengths)
+		{
+
+			double sideA = 3.35, sideB = 16.2, sideC = 15.7;
+			double angleA, angleB, angleC;
+			double expectedAngleA = 92.58, expectedAngleB = 11.92, expectedAngleC = 75.50;
 			double tolerance = 0.01; // compares the angles up to the second decimal place
 
 
