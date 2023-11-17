@@ -134,6 +134,24 @@ namespace UnitTestTriangleSolver
 			Assert::AreEqual(expectedAngleC, angleC, tolerance);
 		}
 
+		// tests a triangle with side lengths that are 3 digit numbers
+		TEST_METHOD(InsideAngles_LargerNumbers)
+		{
+
+			double sideA = 309, sideB = 267, sideC = 502;
+			double angleA, angleB, angleC;
+			double expectedAngleA = 121.10, expectedAngleB = 27.09, expectedAngleC = 31.80;
+			double tolerance = 0.01; // compares the angles up to the second decimal place
+
+			bool actual = GetTriangleInsideAngles(sideA, sideB, sideC, &angleA, &angleB, &angleC);
+
+			Assert::IsTrue(actual);
+			// tests that the actual and expected values are equal up to 2 decimal places
+			Assert::AreEqual(expectedAngleA, angleA, tolerance);
+			Assert::AreEqual(expectedAngleB, angleB, tolerance);
+			Assert::AreEqual(expectedAngleC, angleC, tolerance);
+		}
+
 		// tests 3 sides that do not form a triangle
 		TEST_METHOD(InsideAngles_InvalidTriangle)
 		{
