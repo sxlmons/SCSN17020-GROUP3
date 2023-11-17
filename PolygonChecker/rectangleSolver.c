@@ -44,6 +44,10 @@ double getSideLength(VECTOR2 p1, VECTOR2 p2) {
 	return length;
 }
 
+double calculateArea(double sides[]) {
+	return sides[0] * sides[2];
+}
+
 void AnalyzeRectangle(VECTOR2* points) {
 	if (points == NULL) {
 		fprintf(stderr, "VECTOR2 pointer is NULL in AnalyzeRectangle.\n");
@@ -62,7 +66,7 @@ void AnalyzeRectangle(VECTOR2* points) {
 		fprintf(stdout, "Not a Shape\n");
 	}
 	else if (sides[0] == sides[1] && sides[0] == sides[2] && sides[0] == sides[3]) {
-		area = sides[0] * sides[2];
+		calculateArea(sides);
 		fprintf(stdout, "%s %f\n %s %f\n ", "Rectangle and square. Perimeter is:", perimeter, "Area is:", area);
 	}
 	else if (sides[0] == sides[2] && sides[1] == sides[3]) {
