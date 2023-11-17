@@ -70,3 +70,5 @@ bool GetTriangleInsideAngles(double a, double b, double c, double* A, double* B,
 void DisplayTriangleInsideAngles(double A, double B, double C) {
 	printf("The  inside angles of the triangle are: %.2lf, %.2lf, and %.2lf degrees.\n", A, B, C);
 }
+
+
